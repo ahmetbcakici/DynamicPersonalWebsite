@@ -1,0 +1,22 @@
+<% include partials/header %>
+    <main class="mt-4 rounded">
+        <section class="h-25 montserrat">
+            <h2 class="text-center text-white" style="padding-top:1rem;">
+                <p><b>Portfolio</b></p>
+            </h2>
+        </section>
+
+        <section class="h-75 bg-white p-5 portfolio-section">
+            <div class="row text-center portfolio-items">
+            </div>
+        </section>
+    </main>
+    
+    <script>
+        $.get("/api/portfolio", function(docs, status) {
+            docs.map(data => {
+                $(".row").append(`<div class="portfolio-item col-4 image-container mb-4"><div style="height: 200px;"><img src="${data.image_path}" class="portfolio-image" style="height:100%; width:100%; object-fit:cover;"></div><a href="${data.ref_link}" target="blank"><div class="portfolio-overlay montserrat" data-target="#myModal"><div class="float-left overlay-header">${data.header}</div><div class="float-left overlay-description text-left">${data.description}</div><div class="clearfix"></div><div class="float-left overlay-category">${data.type}</div></div></a></div>`);
+            })
+        });
+    </script>
+    <% include partials/footer %>

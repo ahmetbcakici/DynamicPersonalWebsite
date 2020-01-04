@@ -1,0 +1,28 @@
+<% include partials/header_admin %>
+<div class="card card-login mx-auto mt-3 ">
+    <div class="card-header">Change Password</div>
+    <div class="card-body">
+        <form method="POST" action="/operation/changepass">
+            <div class="form-group">
+                <div class="form-label-group">
+                    <input type="password" name="current_pass" id="inputCurrentPassword" class="form-control" placeholder="Current Password" required autofocus="autofocus">
+                    <label for="inputCurrentPassword">Current Password</label>
+                </div>
+            </div>
+            <div class="form-group">
+                <div class="form-label-group">
+                    <input type="text" name="new_username" id="inputUsername" class="form-control" placeholder="New Username" required>
+                    <label for="inputUsername">New Username</label>
+                </div>
+            </div>
+            <div class="form-group">
+                <div class="form-label-group">
+                    <input type="password" name="new_pass" id="inputNewPassword" class="form-control" placeholder="New Password" required>
+                    <label for="inputNewPassword">New Password</label>
+                </div>
+            </div>
+            <input type="submit" class="btn btn-primary btn-block" value="Change">
+        </form>
+    </div>
+</div>
+<% include partials/footer_admin %>

@@ -1,0 +1,52 @@
+<% include partials/header %>
+    <main class="mt-4 rounded">
+        <section class="h-25 montserrat">
+            <h2 class="text-center text-white" style="padding-top:1rem;">
+                <p><b>Experience</b></p>
+            </h2>
+        </section>
+
+        <section class="section-experience h-75 bg-white pl-5 pt-4">
+            <div class="row">
+                <div class="part-of-education col-6">
+                    <h3 class="montserrat font-weight-bold" style="font-size:21px;line-height: 1.5em;"> Education </h3>
+                    <div class="cards mt-4 mb-4 pt-1 pb-1"></div>
+                </div>
+                <div class="part-of-career col-6">
+                    <h3 class="montserrat font-weight-bold" style="font-size:21px;line-height: 1.5em;"> Career </h3>
+                    <div class="cards mt-4 mb-4 pt-1 pb-1"></div>
+                </div>
+            </div>
+
+            <div class="row">
+                <div class="design-skills col-6">
+                    <h3 class="montserrat font-weight-bold" style="font-size:21px;line-height: 1.5em;"> Design <span class="text-success">Skills</span> </h3>
+                    <div class="skills mt-4 mb-4 pt-1 pb-1"></div>
+                </div>
+                <div class="programming-skills col-6">
+                    <h3 class="montserrat font-weight-bold" style="font-size:21px;line-height: 1.5em;"> Programming <span class="text-success">Skills</span> </h3>
+                    <div class="skills mt-4 mb-4 pt-1 pb-1"></div>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <script>
+        $.get("/api/experience", function(docs, status) {
+            docs.map(data => {
+                if (data.category == "career")
+                    $(".part-of-career .cards").prepend(`<div class="card ml-3 mt-3 mb-3" style="width: 30rem;"><div class="card-body pt-2 pb-2"><h5 class="card-title mb-1"><b>${data.header}</b></h5><small><span class="card-date text-success">${data.date}</span><span class="text-muted"> | ${data.place}</span></small><p class="card-text mt-1">${data.description}</p></div></div>`);
+                else
+                    $(".part-of-education .cards").prepend(`<div class="card ml-3 mt-3 mb-3" style="width: 30rem;"><div class="card-body pt-2 pb-2"><h5 class="card-title mb-1"><b>${data.header}</b></h5><small><span class="card-date text-success">${data.date}</span><span class="text-muted"> | ${data.place}</span></small><p class="card-text mt-1">${data.description}</p></div></div>`);
+            })
+        });
+        $.get("/api/skill", function(docs, status) {
+            docs.map(data => {
+                if (data.category == "design")
+                    $(".design-skills .skills").append(`<div class="skill mb-2"><small class="mb-1 montserrat"><b>${data.name}</b></small><div class="progress w-75 rounded-0 mt-1" style="height:10px;"><div class="progress-bar bg-success" style="width:${data.percent}%;" role="progressbar" aria-valuenow="${data.percent}" aria-valuemin="0" aria-valuemax="100"></div></div></div>`);
+                else
+                    $(".programming-skills .skills").append(`<div class="skill mb-2"><small class="mb-1 montserrat"><b>${data.name}</b></small><div class="progress w-75 rounded-0 mt-1" style="height:10px;"><div class="progress-bar bg-success" style="width:${data.percent}%;" role="progressbar" aria-valuenow="${data.percent}" aria-valuemin="0" aria-valuemax="100"></div></div></div>`);
+            })
+        });
+    </script>
+    <% include partials/footer %>

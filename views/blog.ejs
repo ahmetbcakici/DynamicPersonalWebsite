@@ -1,0 +1,22 @@
+<% include partials/header %>
+    <main class="mt-4 rounded">
+        <section class="h-25 montserrat">
+            <h2 class="text-center text-white" style="padding-top:1rem;">
+                <p><b>Blog</b></p>
+            </h2>
+        </section>
+
+        <section class="blog-section h-75 bg-white p-5">
+            <div class="row mb-3">
+            </div>
+        </section>
+    </main>
+
+    <script>
+        $.get("/api/blog", function(docs, status) {
+            docs.map(data => {
+                $(".row").append(`<div class="col-6 post"><div class="blog-post-box w-100 roboto text-center"><div style="height: 200px;"><a href="post/${data.url}"><img src="${data.image_path}" alt="" style="height:100%; width:100%; object-fit:cover;"></a></div><div class="p-1 pr-2 pl-2 bg-white text-success roboto thumbnail-date"><h5 class="p-0 m-0">${data.date[0]+data.date[1]}</h5><small class="p-0 m-0">${data.date.split(' ')[1]}</small></div><small class="d-block text-muted pt-2 pb-2">${data.category}</small><p class="montserrat pb-3"><b>${data.header}</b></p></div></div>`);
+            })
+        });
+    </script>
+    <% include partials/footer %>

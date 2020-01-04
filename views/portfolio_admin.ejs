@@ -1,0 +1,113 @@
+<% include partials/header_admin %>
+    <main>
+        <section class="section-skill h-75 bg-white pl-5 pt-4 pr-5">
+
+            <form method="POST" action="/api/portfolio" enctype="multipart/form-data">
+                <input type="text" name="id" class="input-elements" hidden>
+                <div class="input-group mb-4">
+                    <div class="input-group-prepend ">
+                        <span class="input-group-text border-top-0 border-right-0 border-left-0" style="background:rgb(250, 250, 250);"><i class="fas fa-heading form-icons"></i></span>
+                    </div>
+                    <input type="text" class="form-control border-top-0 border-right-0 border-left-0 input-elements" placeholder="Header" name="header" required>
+                </div>
+                <div class="input-group mb-4">
+                    <div class="input-group-prepend ">
+                        <span class="input-group-text border-top-0 border-right-0 border-left-0" style="background:rgb(250, 250, 250);"><i class="fas fa-comment form-icons"></i></span>
+                    </div>
+                    <input type="text" class="form-control border-top-0 border-right-0 border-left-0 input-elements" placeholder="Description (optionally)" name="description">
+                </div>
+                <div class="input-group mb-4">
+                    <div class="input-group-prepend ">
+                        <span class="input-group-text border-top-0 border-right-0 border-left-0" style="background:rgb(250, 250, 250);"><i class="fas fa-link form-icons"></i></span>
+                    </div>
+                    <input type="text" class="form-control border-top-0 border-right-0 border-left-0 input-elements" placeholder="Reference Link must be with http or https (optionally)" name="reflink">
+                </div>
+                <div class="input-group mb-4">
+                    <div class="input-group-prepend ">
+                        <span class="input-group-text border-top-0 border-right-0 border-left-0" style="background:rgb(250, 250, 250);"><i class="fab fa-accusoft form-icons"></i></span>
+                    </div>
+                    <input type="text" class="form-control border-top-0 border-right-0 border-left-0 input-elements" placeholder="Type" name="type" required>
+                </div>
+                <div class="input-group mb-4">
+                    <div class="input-group-prepend ">
+                        <span class="input-group-text border-top-0 border-right-0 border-left-0" style="background:rgb(250, 250, 250);"><i class="fas fa-images form-icons"></i></span>
+                    </div>
+                    <div class="custom-file">
+                        <input type="file" class="custom-file-input input-elements" id="validatedCustomFile" name="portfolio-image" required>
+                        <label class="custom-file-label" for="validatedCustomFile">Choose a photo...</label>
+                        <div class="invalid-feedback">You can just choose JPG || JPEG || PNG files.</div>
+                    </div>
+                </div>
+                <div>
+                    <button type="reset" class="btn btn-secondary d-inline clear-button" style="width: 5%;"><i class="fas fa-broom"></i></button><button type="submit" class="btn btn-success submit-button d-inline" style="width: 94%;">SUBMIT</button>
+                </div>
+            </form>
+            <br><br>
+            <table class="portfolio-items-table table table=bordered">
+                <tr class="bg-light">
+                    <th>Header</th>
+                    <th>Description</th>
+                    <th>Ref Link</th>
+                    <th>Type</th>
+                    <th>Image</th>
+                    <th>Delete</th>
+                    <th>Update</th>
+                </tr>
+            </table>
+        </section>
+    </main>
+
+    <script type="text/javascript" src="../assets/js/funcsfront.js"></script>
+    <script>
+        $.get("/api/portfolio", (docs, status) => {
+            docs.map(data => {
+                $(".portfolio-items-table").append(`
+            <tr>
+                <td hidden>${data._id}</td>
+                <td>${data.header}</td>
+                <td>${data.description}</td>
+                <td width="100">${data.ref_link}</td>
+                <td>${data.type}</td>
+                <td><img src="${'../'+data.image_path}" class="img-responsive img-fluid img-thumbnail" style="width:15rem;height:auto;" alt="can not loading"></td>
+                <td><form method="POST" action="/api/portfolio"><input type="hidden" name="_method" value="delete" /><input type="hidden" name="id" value="${data._id}" /><input type="submit" class="btn btn-danger" value="DELETE"></form></td>
+                <td><button type="button" class="btn btn-info update">UPDATE</button></td>
+            </tr>`);
+            });
+        });
+
+        $(document).on("click", ".portfolio-items-table .update", function() {
+            var $row = $(this).closest("tr");
+            var $tds = $row.find("td");
+            let i = 0;
+            var x = document.getElementsByClassName("input-elements");
+            $.each($tds, function() {
+                if (i < 6) {
+                    if(i == 5){
+                        $(".custom-file-label").text($(this).children("img").attr("src").substr($(this).children("img").attr("src").lastIndexOf('\\') + 1))
+                    }
+                    x[i].value = $(this).text();
+                    i++;
+                }
+            });            
+            $('input[type="file"]').prop('required',false);
+        })
+
+        $(".clear-button").click(function(){
+            $(".custom-file-label").text("Choose a photo...");
+            $('input[type="file"]').prop('required',true);
+        })
+
+        $("input[type='file']").change(function() {
+            let extension = this.value.substr(this.value.lastIndexOf('.') + 1);
+            let filenameselected = this.value.substr(this.value.lastIndexOf('\\') + 1);            
+            if (!(extension == "jpeg" || extension == "jpg" || extension == "png")) {
+                $(".custom-file-label").text("You can just choose JPG , JPEG , PNG files.");
+                $(".submit-button").prop('disabled', true);
+            }
+            else {
+                $(".custom-file-label").text(filenameselected);
+                $(".submit-button").prop('disabled', false);
+            }
+        })
+    </script>
+    <% include partials/footer_admin %>

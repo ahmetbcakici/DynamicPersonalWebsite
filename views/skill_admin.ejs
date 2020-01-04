@@ -1,0 +1,70 @@
+<% include partials/header_admin %>
+    <main>
+        <section class="section-skill h-75 bg-white pl-5 pt-4 pr-5">
+
+            <form method="POST" action="/api/blog">
+                <input type="text" name="id" class="input-elements" hidden>
+                <div class="input-group mb-4">
+                    <div class="input-group-prepend ">
+                        <span class="input-group-text border-top-0 border-right-0 border-left-0" style="background:rgb(250, 250, 250);"><i class="fab fa-elementor form-icons"></i></span>
+                    </div>
+                    <input type="text" class="form-control border-top-0 border-right-0 border-left-0 input-elements" placeholder="Name" name="name" required>
+                </div>
+                <div class="input-group mb-4">
+                    <div class="input-group-prepend ">
+                        <span class="input-group-text border-top-0 border-right-0 border-left-0" style="background:rgb(250, 250, 250);"><i class="fas fa-percent form-icons"></i></span>
+                    </div>
+                    <input type="text" class="form-control border-top-0 border-right-0 border-left-0 input-elements" placeholder="Percent" name="percent" required>
+                </div>
+                <div class="input-group mb-4">
+                    <div class="input-group-prepend ">
+                        <span class="input-group-text border-top-0 border-right-0 border-left-0" style="background:rgb(250, 250, 250);"><i class="fab fa-accusoft form-icons"></i></span>
+                    </div>
+                    <input type="text" class="form-control border-top-0 border-right-0 border-left-0 input-elements" placeholder="Category (programming or design)" name="category" required>
+                </div>
+                <div>
+                    <button type="reset" class="btn btn-secondary clear-button d-inline" style="width: 5%;"><i class="fas fa-broom"></i></button><button type="submit" class="btn btn-success submit-button d-inline" style="width: 94%;">SUBMIT</button>
+                </div>
+            </form>
+            <br><br>
+            <table class="skills-table table table=bordered">
+                <tr class="bg-light">
+                    <th>Name</th>
+                    <th>Percent</th>
+                    <th>Category</th>
+                    <th>Delete</th>
+                    <th>Update</th>
+                </tr>
+            </table>
+        </section>
+    </main>
+
+    <script>
+        $.get("/api/skill", (docs, status) => {
+            docs.map(data => {
+                $(".skills-table").append(`
+            <tr>
+                <td hidden>${data._id}</td>
+                <td>${data.name}</td>
+                <td>${data.percent}</td>
+                <td>${data.category}</td>
+                <td><form method="POST" action="/api/skill"><input type="hidden" name="_method" value="delete" /><input type="hidden" name="id" value="${data._id}" /><input type="submit" class="btn btn-danger" value="DELETE"></form></td>
+                <td><button type="button" class="btn btn-info update">UPDATE</button></td>
+            </tr>`);
+            });
+        });
+
+        $(document).on("click", ".skills-table .update", function() {
+            var $row = $(this).closest("tr");
+            var $tds = $row.find("td");
+            let i = 0;
+            var x = document.getElementsByClassName("input-elements");
+            $.each($tds, function() {
+                if (i < 4) {
+                    x[i].value = $(this).text();
+                    i++;
+                }
+            });
+        })
+    </script>
+    <% include partials/footer_admin %>

@@ -1,0 +1,86 @@
+<% include partials/header %>
+    <main class="mt-4 rounded">
+        <section class="h-25 montserrat">
+            <h2 class="text-center text-white" style="padding-top:1rem;">
+                <p><b>Contact</b></p>
+            </h2>
+        </section>
+
+        <section class="h-75 bg-white p-5 contact-content">
+            <div class="row mb-3">
+                <div class="get-contact col-6">
+                    <h3 class="montserrat font-weight-bold pb-3" style="font-size:21px;line-height: 1.5em;"> Get in <span class="text-success">Touch</span> </h3>
+
+                    <div id="googlemap">
+                    </div>
+
+                    <div class="montserrat pb-3">
+                        <h5 class="d-inline"><a class="text-success"><i class="fas fa-globe-europe"></i></a></h5>
+                        <h6 class="d-inline pl-3" style="font-size:.8rem;"><b class="country"></b></h6>
+                    </div>
+                    <div class="montserrat pb-3">
+                        <h5 class="d-inline"><a class="text-success"><i class="fas fa-envelope"></i></a></h5>
+                        <h6 class="d-inline pl-3" style="font-size:.8rem;"><b class="mail_address_parent"></b></h6>
+                    </div>
+                    <div class="montserrat pb-3">
+                        <h5 class="d-inline"><a class="text-success"><i class="fas fa-phone-alt"></i></a></h5>
+                        <h6 class="d-inline pl-3" style="font-size:.8rem;"><b class="phone_number_parent"></b></h6>
+                    </div>
+                </div>
+                <div class="message-form col-6">
+                    <h3 class="montserrat font-weight-bold pb-3" style="font-size:21px;line-height: 1.5em;"> Contact <span class="text-success">Form</span> </h3>
+
+                    <form method="POST" action="/operation/mail">
+                        <input type="hidden" class="the_mail_address" name="the_mail_address" value="">
+                        <div class="input-group mb-4">
+                            <div class="input-group-prepend ">
+                                <span class="input-group-text border-top-0 border-right-0 border-left-0" style="background:rgb(250, 250, 250);"><i class="fas fa-user form-icons"></i></span>
+                            </div>
+                            <input type="text" class="form-control border-top-0 border-right-0 border-left-0" placeholder="Full Name" name="fullname" required>
+                        </div>
+                        <div class="input-group mb-4">
+                            <div class="input-group-prepend ">
+                                <span class="input-group-text border-top-0 border-right-0 border-left-0" style="background:rgb(250, 250, 250);"><i class="fas fa-envelope form-icons"></i></span>
+                            </div>
+                            <input type="email" class="form-control border-top-0 border-right-0 border-left-0" placeholder="Mail Address" name="mail_address" required>
+                        </div>
+                        <div class="input-group mb-4">
+                            <div class="input-group-prepend ">
+                                <span class="input-group-text border-top-0 border-right-0 border-left-0" style="background:rgb(250, 250, 250);"><i class="fas fa-heading form-icons"></i></span>
+                            </div>
+                            <input type="text" class="form-control border-top-0 border-right-0 border-left-0" placeholder="Subject" name="subject" required>
+                        </div>
+                        <div class="input-group mb-4">
+                            <div class="input-group-prepend">
+                                <span class="input-group-text border-top-0 border-right-0 border-left-0" style="background:rgb(250, 250, 250);"><i class="fas fa-comment form-icons"></i></span>
+                            </div>
+                            <textarea class="form-control border-top-0 border-right-0 border-left-0" rows="4" style="resize:none;" placeholder="Message" name="message" required></textarea>
+                        </div>
+                        <button type="submit" class="btn btn-success submit-button">Send</button>
+                    </form>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <script>
+        $.get("/api/homepage", function(docs, status) {
+            docs.map(data => {
+                $(".country").text(data.country);
+                $(".mail_address_parent").append(`<a href="mailto:${data.mail_address}">${data.mail_address}</a>`);
+                $(".phone_number_parent").append(`<a href="tel:${data.phone_number}">${data.phone_number}</a>`);
+                $(".the_mail_address").val(data.mail_address);
+                $("#googlemap").append(`<div style="overflow:hidden;width: 500px;position: relative;"><iframe class="googlemap" width="400" height="200" src="https://www.google.com/maps?width=500&amp;height=250&amp;hl=en&amp;q=${data.country}+(Adres)&amp;ie=UTF8&amp;t&amp;z=10&amp;iwloc=B&amp;output=embed" frameborder="0" scrolling="no" marginheight="0"
+                            marginwidth="0"></iframe>
+                        <div style="position: absolute;width: 80%;bottom: 10px;left: 0;right: 0;margin-left: auto;margin-right: auto;color: #000;text-align: center;"><small style="line-height: 1.8;font-size: 2px;background: #fff;">Powered by <a href="https://embedgooglemaps.com/">Embedgooglemaps EN</a> & <a href="https://selsdonwellbeing.co.uk/">healthconsumerhelp.com</a></small></div>
+                        <style>
+                            #gmap_canvas img {
+                                max-width: none!important;
+                                background: none!important
+                            }
+                        </style>
+                    </div><br />`);
+            })
+        });
+    </script>
+    <% include partials/footer %>

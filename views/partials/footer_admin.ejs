@@ -1,0 +1,54 @@
+</div>
+<!-- /.container-fluid -->
+
+<!-- Sticky Footer -->
+<footer class="sticky-footer">
+    <div class="container my-auto">
+        <div class="copyright text-center my-auto">
+            <span>Copyright © Ahmet Buğra Çakıcı 2020</span>
+            <span class="float-right"><a class="github-button" href="https://github.com/ahmetbcakici/DynamicPersonalWebsite" data-color-scheme="no-preference: light; light: light; light: light;" data-size="large" aria-label="Star ahmetbcakici/DynamicPersonalWebsite on GitHub">&nbsp;Star on Github</a></span>
+        </div>
+    </div>
+</footer>
+
+</div>
+<!-- /.content-wrapper -->
+
+</div>
+<!-- /#wrapper -->
+
+<!-- Scroll to Top Button-->
+<a class="scroll-to-top rounded" href="#page-top">
+    <i class="fas fa-angle-up"></i>
+</a>
+
+<script src="/assets/vendor/jquery/jquery.min.js"></script>
+<script src="/assets/vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
+
+<!-- Core plugin JavaScript-->
+<script src="/assets/vendor/jquery-easing/jquery.easing.min.js"></script>
+
+<!-- Page level plugin JavaScript-->
+<script src="/assets/vendor/chart.js/Chart.min.js"></script>
+<script src="/assets/vendor/datatables/jquery.dataTables.js"></script>
+<script src="/assets/vendor/datatables/dataTables.bootstrap4.js"></script>
+
+<!-- Custom scripts for all pages-->
+<script src="/assets/js/sb-admin.min.js"></script>
+
+<!-- Demo scripts for this page-->
+<script src="/assets/js/demo/datatables-demo.js"></script>
+<script src="/assets/js/demo/chart-area-demo.js"></script>
+
+</body>
+<script>
+    $.get("/api/homepage", function(docs, status) {
+        docs.map(data => {
+            $(".name").text(data.name);
+            $(document).attr("title", `Admin Panel | ${data.site_title}`);
+            $(".site-icon").attr("href", `/assets/images/${data.site_icon}`);
+        })
+    })
+</script>
+
+</html>

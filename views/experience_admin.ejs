@@ -1,0 +1,86 @@
+<% include partials/header_admin %>
+    <main>
+        <section class="section-experience h-75 bg-white pl-5 pt-4 pr-5">
+
+            <form method="POST" action="/api/experience">
+                <input type="text" name="id" class="input-elements" hidden>
+                <div class="input-group mb-4">
+                    <div class="input-group-prepend ">
+                        <span class="input-group-text border-top-0 border-right-0 border-left-0" style="background:rgb(250, 250, 250);"><i class="fas fa-heading form-icons"></i></span>
+                    </div>
+                    <input type="text" class="form-control border-top-0 border-right-0 border-left-0 input-elements" placeholder="Header" name="header" required>
+                </div>
+                <div class="input-group mb-4">
+                    <div class="input-group-prepend ">
+                        <span class="input-group-text border-top-0 border-right-0 border-left-0" style="background:rgb(250, 250, 250);"><i class="fas fa-calendar-alt form-icons"></i></span>
+                    </div>
+                    <input type="text" class="form-control border-top-0 border-right-0 border-left-0 input-elements" placeholder="Date Range" name="date" required>
+                </div>
+                <div class="input-group mb-4">
+                    <div class="input-group-prepend ">
+                        <span class="input-group-text border-top-0 border-right-0 border-left-0" style="background:rgb(250, 250, 250);"><i class="fas fa-map form-icons"></i></span>
+                    </div>
+                    <input type="text" class="form-control border-top-0 border-right-0 border-left-0 input-elements" placeholder="Place" name="place" required>
+                </div>
+                <div class="input-group mb-4">
+                    <div class="input-group-prepend">
+                        <span class="input-group-text border-top-0 border-right-0 border-left-0" style="background:rgb(250, 250, 250);"><i class="fas fa-comment form-icons"></i></span>
+                    </div>
+                    <textarea class="form-control border-top-0 border-right-0 border-left-0 input-elements" rows="4" style="resize:none;" placeholder="Description (optionally)" name="description"></textarea>
+                </div>
+                <div class="input-group mb-4">
+                    <div class="input-group-prepend ">
+                        <span class="input-group-text border-top-0 border-right-0 border-left-0" style="background:rgb(250, 250, 250);"><i class="fab fa-accusoft form-icons"></i></span>
+                    </div>
+                    <input type="text" class="form-control border-top-0 border-right-0 border-left-0 input-elements" placeholder="Category (education or career)" name="category" required>
+                </div>
+                <div>
+                    <button type="reset" class="btn btn-secondary clear-button d-inline" style="width: 5%;"><i class="fas fa-broom"></i></button><button type="submit" class="btn btn-success submit-button d-inline" style="width: 94%;">SUBMIT</button>
+                </div>
+            </form>
+            <br><br>
+            <table class="experience-table table table=bordered">
+                <tr class="bg-light">
+                    <th>Header</th>
+                    <th>Date</th>
+                    <th>Place</th>
+                    <th>Description</th>
+                    <th>Category</th>
+                    <th>Delete</th>
+                    <th>Update</th>
+                </tr>
+            </table>
+        </section>
+    </main>
+
+    <script>
+        $.get("/api/experience", (docs, status) => {
+            docs.map(data => {
+                $(".experience-table").append(`
+            <tr>
+                <td hidden>${data._id}</td>
+                <td>${data.header}</td>
+                <td>${data.date}</td>
+                <td>${data.place}</td>
+                <td>${data.description}</td>
+                <td>${data.category}</td>
+                <td><form method="POST" action="/api/experience"><input type="hidden" name="_method" value="delete" /><input type="hidden" name="id" value="${data._id}" /><input type="submit" class="btn btn-danger" value="DELETE"></form></td>
+                <td><button type="button" class="btn btn-info update">UPDATE</button></td>
+            </tr>`);
+            });
+        });
+
+        $(document).on("click", ".experience-table .update", function() {
+            var $row = $(this).closest("tr");
+            var $tds = $row.find("td");
+            let i = 0;
+            var x = document.getElementsByClassName("input-elements");
+            $.each($tds, function() {
+                if (i < 6) {
+                    x[i].value = $(this).text();
+                    i++;
+                }
+            });
+        })
+    </script>
+    <% include partials/footer_admin %>

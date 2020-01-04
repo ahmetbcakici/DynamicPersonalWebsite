@@ -1,0 +1,11 @@
+<% include partials/header %>
+    <main class="mt-4 rounded bg-white">
+        <section class="bg-white p-5 post-items"></section>
+    </main>
+    <script>
+        $.get("/api/blog/<%=params_url%>", function(docs, status) {
+            $("section").append(`<div style="height: 400px;" class="post-image"><img src="${'../'+docs.image_path}" alt="" style="height:100%; width:100%; object-fit:cover;"></div><div class="bg-white p-3 blog-content"><h3 class="montserrat pt-3 mb-4"><b>${docs.header}</b></h3><span class="text-muted roboto"><span class="blog-post-info"><i class="far fa-clock"></i> ${docs.date}</span> &nbsp;<p class="roboto mt-3">${docs.content}</p>
+          </div>`);
+        });
+    </script>
+    <% include partials/footer %>

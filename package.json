@@ -1,0 +1,30 @@
+{
+    "name": "Dynamic Personal Website",
+    "version": "1.0.0",
+    "description": "This app is dynamic personel website project which has CMS.",
+    "main": "server.js",
+    "scripts": {
+        "start": "node server.js"
+    },
+    "repository": {
+        "type": "git",
+        "url": "git+https://github.com/ahmetbcakici/DynamicPersonalWebsite"
+    },
+    "author": "Ahmet Buğra Çakıcı",
+    "license": "MIT",
+    "bugs": {
+        "url": "https://github.com/ahmetbcakici/DynamicPersonalWebsite/issues"
+    },
+    "homepage": "https://github.com/ahmetbcakici/DynamicPersonalWebsite#readme",
+    "dependencies": {
+        "body-parser": "^1.19.0",
+        "ejs": "^2.7.4",
+        "express": "^4.17.1",
+        "express-session": "^1.17.0",
+        "formidable": "^1.2.1",
+        "mongoose": "^5.7.13",
+        "multer": "^1.4.2",
+        "nodemailer": "^6.3.1",
+        "nodemon": "^1.19.4"
+    }
+}

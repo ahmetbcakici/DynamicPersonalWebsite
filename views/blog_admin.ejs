@@ -1,0 +1,171 @@
+<% include partials/header_admin %>
+    <script src="https://cdn.ckeditor.com/4.13.1/full/ckeditor.js"></script>
+    <main>
+        <section class="section-blog h-75 bg-white pl-5 pt-4 pr-5 mb-3">
+            <form method="POST" action="/api/blog" enctype="multipart/form-data">
+                <input type="text" name="id" class="input-elements" hidden>
+                <div class="input-group mb-4">
+                    <div class="input-group-prepend ">
+                        <span class="input-group-text border-top-0 border-right-0 border-left-0" style="background:rgb(250, 250, 250);"><i class="fas fa-link form-icons"></i></span>
+                    </div>
+                    <input type="text" class="form-control border-top-0 border-right-0 border-left-0 input-elements seourl" placeholder="Auto Seo URL" name="seourl" readonly>
+                </div>
+                <div class="input-group mb-4">
+                    <div class="input-group-prepend ">
+                        <span class="input-group-text border-top-0 border-right-0 border-left-0" style="background:rgb(250, 250, 250);"><i class="fas fa-heading form-icons"></i></span>
+                    </div>
+                    <input type="text" class="form-control border-top-0 border-right-0 border-left-0 input-elements header" placeholder="Header" name="header" required>
+                </div>
+                <div class="input-group mb-4">
+                    <div class="input-group-prepend">
+                        <span class="input-group-text border-top-0 border-right-0 border-left-0" style="background:rgb(250, 250, 250);"><i class="fas fa-file-alt form-icons"></i></span>
+                    </div>
+                    <textarea class="form-control border-top-0 border-right-0 border-left-0 input-elements" rows="4" style="resize:none;" placeholder="Content" name="editor1" required></textarea>
+                </div>
+                <div class="input-group mb-4">
+                    <div class="input-group-prepend ">
+                        <span class="input-group-text border-top-0 border-right-0 border-left-0" style="background:rgb(250, 250, 250);"><i class="fas fa-calendar-alt form-icons"></i></span>
+                    </div>
+                    <input type="text" class="form-control border-top-0 border-right-0 border-left-0 input-elements" placeholder="Date (Format : 21 December 2019)" name="date" required>
+                </div>
+                <div class="input-group mb-4">
+                    <div class="input-group-prepend ">
+                        <span class="input-group-text border-top-0 border-right-0 border-left-0" style="background:rgb(250, 250, 250);"><i class="fab fa-accusoft form-icons"></i></span>
+                    </div>
+                    <input type="text" class="form-control border-top-0 border-right-0 border-left-0 input-elements" placeholder="Category" name="category" required>
+                </div>
+                <div class="input-group mb-4">
+                    <div class="input-group-prepend ">
+                        <span class="input-group-text border-top-0 border-right-0 border-left-0" style="background:rgb(250, 250, 250);"><i class="fas fa-images form-icons"></i></span>
+                    </div>
+                    <div class="custom-file">
+                        <input type="file" class="custom-file-input input-elements" id="validatedCustomFile" name="post-image" required>
+                        <label class="custom-file-label" for="validatedCustomFile">Choose a photo...</label>
+                        <div class="invalid-feedback">You can just choose JPG || JPEG || PNG files.</div>
+                    </div>
+                </div>
+                <div>
+                    <button type="reset" class="btn btn-secondary d-inline" style="width: 5%;"><i class="fas fa-broom"></i></button><button type="submit" class="btn btn-success submit-button d-inline" style="width: 94%;">SUBMIT</button>
+                </div>
+            </form>
+            <br><br>
+            <table class="posts-table table table=bordered">
+                <tr class="bg-light">
+                    <th hidden>SEO URL</th>
+                    <th>Header</th>
+                    <th hidden>Content</th>                    
+                    <th>Date</th>
+                    <th>Category</th>
+                    <th>Image_path</th>
+                    <th>Delete</th>
+                    <th>Update</th>
+                    <th>Multiple Remove</th>
+                </tr>
+            </table>
+            <button class="remove-selecteds w-100 btn btn-success mt-3">Remove Selected Posts</button>
+        </section>
+    </main>
+    <script type="text/javascript" src="../assets/js/funcsfront.js"></script>
+    <script>
+        CKEDITOR.replace('editor1');
+
+        $.get("/api/blog", (docs, status) => {
+            docs.map(data => {
+                $(".posts-table").append(`
+            <tr>
+                <td hidden>${data._id}</td>
+                <td hidden>${data.url}</td>
+                <td>${data.header}</td>
+                <td hidden>${data.content}</td>
+                <td>${data.date}</td>
+                <td>${data.category}</td>
+                <td><img src="${'../'+data.image_path}" class="img-responsive img-fluid img-thumbnail" style="width:15rem;height:auto;" alt="can not loading"></td>
+                <td><form method="POST" action="/api/blog"><input type="hidden" name="_method" value="delete" /><input type="hidden" name="id" value="${data._id}" /><input type="submit" class="btn btn-danger" value="DELETE"></form></td>
+                <td><button type="button" class="btn btn-info update">UPDATE</button></td>
+                <td><input type="checkbox" class="multiple-remove" style="text-align:center;"></td>
+            </tr>`);
+            });
+        });
+
+        $(".header").on("input", function() {
+            ToSeoUrl(this.value);
+        });
+
+        $("button[type='reset']").click(function(){
+            $(".custom-file-label").text("Choose a photo...");
+            $('input[type="file"]').prop('required',true);
+            CKEDITOR.instances.editor1.setData('');
+        })
+
+        $("input[type='file']").change(function() {
+            let extension = this.value.substr(this.value.lastIndexOf('.') + 1);
+            let filenameselected = this.value.substr(this.value.lastIndexOf('\\') + 1);            
+            if (!(extension == "jpeg" || extension == "jpg" || extension == "png")) {
+                $(".custom-file-label").text("You can just choose JPG , JPEG , PNG files.");
+                $(".submit-button").prop('disabled', true);
+            }
+            else {
+                $(".custom-file-label").text(filenameselected);
+                $(".submit-button").prop('disabled', false);
+            }
+        })
+
+        $(document).on("click", ".posts-table .update", function() {
+            var $row = $(this).closest("tr");
+            var $tds = $row.find("td");
+            let i = 0;
+            var x = document.getElementsByClassName("input-elements");
+            var editor = CKEDITOR.instances['editor1'];
+            $.each($tds, function() {
+                if (i < 7) {
+                    switch (i) {
+                        case 3:
+                            editor.insertHtml($(this).html());
+                            break;
+                        case 6:
+                        $(".custom-file-label").text($(this).children("img").attr("src").substr($(this).children("img").attr("src").lastIndexOf('\\') + 1))
+                            break;
+                        default:
+                            x[i].value = $(this).text();
+                            break;
+                    }
+                }
+                i++;
+            })
+            $('input[type="file"]').prop('required',false);
+        })
+        var itemsForRemove = [];
+
+        $(document).on("click", ".posts-table .multiple-remove", function() {
+            var $row = $(this).closest("tr");
+            var $tds = $row.find("td");
+            let i = 0;
+            var x = document.getElementsByClassName("input-elements");
+            var editor = CKEDITOR.instances['editor1'];
+            $.each($tds, function() {
+                if (i == 0) {
+                    if (itemsForRemove.includes($(this).text())) {
+                        itemsForRemove.splice(itemsForRemove.indexOf($(this).text()), 1);
+                    } else
+                        itemsForRemove.push($(this).text());
+                }
+                i++;
+            });
+        })
+
+        $(document).on("click", ".remove-selecteds", async function() {
+            $.ajax({
+                url: '/api/blog/multipleRemove',
+                type: 'POST',
+                async: false,
+                dataType: "json",
+                data: {
+                    itemsForRemove
+                },
+                success: function(response) {},
+                error: function(jqXHR, textStatus, err) {}
+            })
+            location.reload();
+        })
+    </script>
+    <% include partials/footer_admin %>

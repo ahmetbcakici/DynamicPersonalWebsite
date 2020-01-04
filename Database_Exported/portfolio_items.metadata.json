@@ -1,0 +1,1 @@
+{"options":{},"indexes":[{"v":{"$numberInt":"2"},"key":{"_id":{"$numberInt":"1"}},"name":"_id_","ns":"DynamicPersonalWebsite.portfolio_items"}],"uuid":"0252713735fd4634b0959f05d3f771d2"}

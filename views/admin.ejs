@@ -1,0 +1,304 @@
+<% include partials/header_admin %>
+    <link href="https://fonts.googleapis.com/css?family=Montserrat:500|Roboto&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+    <link rel="stylesheet" href="/assets/css/style.css">
+    <link rel="stylesheet" href="/assets/css/styles/default.css">
+    <div class="container">
+        <form method="POST" action="/api/homepage" enctype="multipart/form-data">
+        <div class="input-group mb-4">
+            <div class="input-group-prepend ">
+                <span class="input-group-text border-top-0 border-right-0 border-left-0" style="background:rgb(250, 250, 250);"><i class="fas fa-heading form-icons"></i></span>
+            </div>
+            <input type="text" class="form-control border-top-0 border-right-0 border-left-0" placeholder="Site Title" name="site_title" required>
+
+            <div class="input-group-prepend pl-3">
+                <span class="input-group-text border-top-0 border-right-0 border-left-0" style="background:rgb(250, 250, 250);"><i class="fas fa-images form-icons"></i></span>
+            </div>
+            <div class="custom-file mr-2">
+                <input type="file" class="custom-file-input site-icon-file-input" id="validatedCustomFile" name="icon">
+                <label class="custom-file-label site-icon-label" for="validatedCustomFile">Choose a icon to update site tab icon...</label>
+            </div>
+            <input type="submit" class="btn btn-success site-icon-upload-button" value="Update">
+        </div>
+        </form>
+        <main class="mt-4 rounded">
+            <section class="montserrat" style="height:250px;">
+                <div class="row pt-2 pl-2">
+                    <div class="col-3 avatar-cover">
+                        <a target="blank" class="ml-5 mt-5 cursor-pointer" data-toggle="modal" data-target="#uploadPhotoModal">
+                            <img src="../assets/images/avatar.jpeg" alt="Ahmet Buğra Çakıcı" class="avatar w-100">
+                        </a>
+                    </div>
+                    <div class="avatar-texts col-9 text-center pt-5">
+                        <h2 class="text-white name" contenteditable="true" spellcheck="false"><b></b></h2>
+                        <h4 class="text-white mt-2 title" contenteditable="true" spellcheck="false"></h4>
+                        <div class="mt-2 ">
+                            <span class="border pt-3 pl-1">
+                                <h2 class="d-inline pr-2 linkedin"><a href="" target="blank" class="text-white linkedin"><i class="fab fa-linkedin social"></i></a></h2>
+                                <h2 class="d-inline pr-2 github"><a href="#" target="blank" class="text-white github"><i class="fab fa-github-square social"></i></a></h2>
+                                <h2 class="d-inline pr-2 facebook"><a href="" target="blank" class="text-white facebook"><i class="fab fa-facebook-square social"></i></a></h2>
+                                <h2 class="d-inline pr-2 instagram"><a href="" target="blank" class="text-white instagram"><i class="fab fa-instagram social"></i></a></h2>
+                                <h2 class="d-inline pr-2 pinterest"><a href="" target="blank" class="text-white pinterest"><i class="fab fa-pinterest-p social"></i></a></h2>
+                                <h2 class="d-inline pr-2 googlep"><a href="" target="blank" class="text-white googlep"><i class="fab fa-google-plus-g social"></i></a></h2>
+                                <h2 class="d-inline pr-2 medium"><a href="" target="blank" class="text-white medium"><i class="fab fa-medium social"></i></a></h2>
+                                <h2 class="d-inline pr-2 reddit"><a href="" target="blank" class="text-white reddit"><i class="fab fa-reddit-alien social"></i></a></h2>
+                                <h2 class="d-inline pr-2 twitter"><a href="" target="blank" class="text-white twitter"><i class="fab fa-twitter social"></i></a></h2>
+                                <h2 class="d-inline pr-2 youtube"><a href="" target="blank" class="text-white youtube"><i class="fab fa-youtube social"></i></a></h2>
+                        </span>
+                            <h4 class="d-inline pl-1"><a target="blank" class="text-dark cursor-pointer modal-button" data-toggle="modal" data-target="#iconModal"><i class="fas fa-edit "></i></a></h4>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Social Icons Edit Modal -->
+            <div class="modal" id="iconModal" tabindex="-1" role="dialog">
+                <div class="modal-dialog" role="document">
+                    <div class="modal-content">
+                        <div class="modal-body">
+                            <table>
+                                <thead>
+                                    <th class="w-10 text-center">Platform</th>
+                                    <th class="w-60 text-center">Link</th>
+                                    <th class="w-30 text-center">Off/On</th>
+                                </thead>
+                                <tbody>
+                                    <tr>
+                                        <td class="text-center" style="width:10% !important;"><i class="fab fa-linkedin social"></i></td>
+                                        <td class="text-center" style="width:70% !important;" contenteditable="true" spellcheck="false" id="lnkdn-link"><span class="linkedin"></span></td>
+                                        <td class="text-center pt-2" style="width:20% !important;"><label class="switch"><input type="checkbox" class="lnkdn-state linkedin"><span class="slider round"></span></label></td>
+                                    </tr>
+                                    <tr>
+                                        <td class="text-center" style="width:10% !important;"><i class="fab fa-github-square social"></i></td>
+                                        <td class="text-center" style="width:70% !important;" contenteditable="true" spellcheck="false" id="git-link"><span class="github"></span></td>
+                                        <td class="text-center pt-2" style="width:20% !important;"><label class="switch"><input type="checkbox" class="git-state github"><span class="slider round"></span></label></td>
+                                    </tr>
+                                    <tr>
+                                        <td class="text-center" style="width:10% !important;"><i class="fab fa-facebook-square social"></i></td>
+                                        <td class="text-center" style="width:70% !important;" contenteditable="true" spellcheck="false" id="fb-link"><span class="facebook"></span></td>
+                                        <td class="text-center pt-2" style="width:20% !important;"><label class="switch"><input type="checkbox" class="fb-state facebook"><span class="slider round"></span></label></td>
+                                    </tr>
+                                    <tr>
+                                        <td class="text-center" style="width:10% !important;"><i class="fab fa-instagram social"></i></td>
+                                        <td class="text-center" style="width:70% !important;" contenteditable="true" spellcheck="false" id="ig-link"><span class="instagram"></span></td>
+                                        <td class="text-center pt-2" style="width:20% !important;"><label class="switch"><input type="checkbox" class="ig-state instagram"><span class="slider round"></span></label></td>
+                                    </tr>
+                                    <tr>
+                                        <td class="text-center" style="width:10% !important;"><i class="fab fa-pinterest-p social"></i></td>
+                                        <td class="text-center" style="width:70% !important;" contenteditable="true" spellcheck="false" id="pint-link"><span class="pinterest"></span></td>
+                                        <td class="text-center pt-2" style="width:20% !important;"><label class="switch"><input type="checkbox" class="pint-state pinterest"><span class="slider round"></span></label></td>
+                                    </tr>
+                                    <tr>
+                                        <td class="text-center" style="width:10% !important;"><i class="fab fa-google-plus-g social"></i></td>
+                                        <td class="text-center" style="width:70% !important;" contenteditable="true" spellcheck="false" id="gop-link"><span class="googlep"></span></td>
+                                        <td class="text-center pt-2" style="width:20% !important;"><label class="switch"><input type="checkbox" class="gop-state googlep"><span class="slider round"></span></label></td>
+                                    </tr>
+                                    <tr>
+                                        <td class="text-center" style="width:10% !important;"><i class="fab fa-medium social"></i></td>
+                                        <td class="text-center" style="width:70% !important;" contenteditable="true" spellcheck="false" id="md-link"><span class="medium"></span></td>
+                                        <td class="text-center pt-2" style="width:20% !important;"><label class="switch"><input type="checkbox" class="md-state medium"><span class="slider round"></span></label></td>
+                                    </tr>
+                                    <tr>
+                                        <td class="text-center" style="width:10% !important;"><i class="fab fa-reddit-alien social"></i></td>
+                                        <td class="text-center" style="width:70% !important;" contenteditable="true" spellcheck="false" id="red-link"><span class="reddit"></span></td>
+                                        <td class="text-center pt-2" style="width:20% !important;"><label class="switch"><input type="checkbox" class="red-state reddit"><span class="slider round"></span></label></td>
+                                    </tr>
+                                    <tr>
+                                        <td class="text-center" style="width:10% !important;"><i class="fab fa-twitter social"></i></td>
+                                        <td class="text-center" style="width:70% !important;" contenteditable="true" spellcheck="false" id="tw-link"><span class="twitter"></span></td>
+                                        <td class="text-center pt-2" style="width:20% !important;"><label class="switch"><input type="checkbox" class="tw-state twitter"><span class="slider round"></span></label></td>
+                                    </tr>
+                                    <tr>
+                                        <td class="text-center" style="width:10% !important;"><i class="fab fa-youtube social"></i></td>
+                                        <td class="text-center" style="width:70% !important;" contenteditable="true" spellcheck="false" class="ytb-link" id="ytb-link"><span class="youtube"></span></td>
+                                        <td class="text-center pt-2" style="width:20% !important;"><label class="switch"><input type="checkbox" class="ytb-state youtube"><span class="slider round"></span></label></td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                        </div>
+                        <div class="modal-footer">
+                            <div class="alert alert-warning mr-5">Links must be with http/s</div>
+                            <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                            <button type="button" class="btn btn-primary save-changes-icons">Save changes</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Upload Avatar Photo Modal -->
+            <div class="modal" id="uploadPhotoModal" tabindex="-1" role="dialog">
+                <div class="modal-dialog" role="document">
+                    <div class="modal-content">
+                        <form method="POST" enctype="multipart/form-data" action="/operation/upload/avatar" class="was-validated">
+                            <div class="modal-body">
+                                <div class="custom-file">
+                                    <input type="file" class="custom-file-input avatar-file-input" id="validatedCustomFile" name="filetoupload" required>
+                                    <label class="custom-file-label avatar-label" for="validatedCustomFile">Choose a photo...</label>
+                                    <div class="invalid-feedback">You can just choose JPG || JPEG || PNG files.</div>
+                                </div>
+                            </div>
+                            <div class="modal-footer">
+                                <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                                <input type="submit" class="btn btn-primary avatar-upload-button" value="Upload Photo">
+                            </div>
+                        </form>
+                    </div>
+                </div>
+            </div>
+
+            <section class="info-area h-25 bg-white p-5 roboto">
+                <div class="row">
+                    <div class="about-me col-6">
+                        <div class="p-2 pt-3">
+                            <h5 class="montserrat"> <b>About</b> </h5>
+                            <p class="about" contenteditable="true" spellcheck="false"></p>
+                        </div>
+                    </div>
+                    <div class="addresses col-6 pl-5">
+                        <div class="float-left">
+                            <p>Place</p>
+                            <p>E-mail</p>
+                            <p>Phone</p>
+                        </div>
+                        <div class="float-left pl-5">
+                            <p class="country text-success" contenteditable="true" spellcheck="false" onkeypress="return (this.innerText.length <= 33)"></p>
+                            <p class="mail_address text-success"contenteditable="true" spellcheck="false" onkeypress="return (this.innerText.length <= 33)"></p>
+                            <p class="phone_number text-success" contenteditable="true" spellcheck="false" onkeypress="return (this.innerText.length <= 33)"></p>
+                        </div>
+                    </div>
+                </div>
+            </section>
+        </main>
+        <div class="alert alert-warning mt-3" role="alert" hidden>
+            Please fill all fields.
+        </div>
+        <button class="btn btn-success mt-2 w-100 save-changes">SAVE CHANGES</button>
+    </div>
+    <script>
+        $.get("/api/homepage", function(docs, status) {
+            docs.map(data => {
+                $(".name").text(data.name);
+                $(".title").text(data.title);
+                $(".about").text(data.about);
+                $(".country").text(data.country);
+                $(".mail_address").text(data.mail_address);
+                $(".phone_number").text(data.phone_number);
+                $("input[type='text']").val(data.site_title);
+
+                $.each(data.social_icons, function(i, item) {
+                    if (item.state != "true") {
+                        $(`h2.${i}`).css({
+                            'cssText': 'display:none !important'
+                        });
+                    } else {
+                        $(`input.${i}`).prop("checked", true);
+                        $(`a.${i}`).attr("href", item.link);
+                    }
+                    $(`span.${i}`).text(item.link);
+                });
+            })
+        });
+
+        $(".save-changes").click(() => {
+            let spaceControl = false;
+
+            const myDatas = {
+                name: $(".name").text(),
+                title: $(".title").text(),
+                about: $(".about").text(),
+                country: $(".country").text(),
+                mail_address: $(".mail_address").text(),
+                phone_number: $(".phone_number").text()
+            }           
+            
+            $.each(myDatas, function(i, item) {
+                if(myDatas[i] == "") {
+                    spaceControl = true;
+                    return;
+                }
+            })
+
+            if(spaceControl) 
+                $("div.alert-warning").removeAttr("hidden");
+            else{
+                $.ajax({
+                    url: '/api/homepage',
+                    type: 'POST',
+                    async: false,
+                    dataType: "json",
+                    data: {
+                        myDatas
+                    },
+                    success: function(response) {},
+                    error: function(jqXHR, textStatus, err) {}
+                })
+                location.reload();
+            }
+        })
+
+        $(".save-changes-icons").click(() => {
+            const myDatas = {
+                lnkdn_link: $("#lnkdn-link").text(),
+                lnkdn_state: $(".lnkdn-state").is(":checked"),
+                git_link: $("#git-link").text(),
+                git_state: $(".git-state").is(":checked"),
+                fb_link: $("#fb-link").text(),
+                fb_state: $(".fb-state").is(":checked"),
+                ig_link: $("#ig-link").text(),
+                ig_state: $(".ig-state").is(":checked"),
+                pint_link: $("#pint-link").text(),
+                pint_state: $(".pint-state").is(":checked"),
+                gop_link: $("#gop-link").text(),
+                gop_state: $(".gop-state").is(":checked"),
+                md_link: $("#md-link").text(),
+                md_state: $(".md-state").is(":checked"),
+                red_link: $("#red-link").text(),
+                red_state: $(".red-state").is(":checked"),
+                tw_link: $("#tw-link").text(),
+                tw_state: $(".tw-state").is(":checked"),
+                ytb_link: $("#ytb-link").text(),
+                ytb_state: $(".ytb-state").is(":checked"),
+            }
+            $.ajax({
+                url: '/api/homepage/social-icons',
+                type: 'POST',
+                async: false,
+                dataType: "json",
+                data: {
+                    myDatas
+                },
+                success: function(response) {},
+                error: function(jqXHR, textStatus, err) {}
+            })
+            location.reload();
+        })
+
+        $(".avatar-file-input").change(function() {
+            let extension = this.value.substr(this.value.lastIndexOf('.') + 1);
+            let filenameselected = this.value.substr(this.value.lastIndexOf('\\') + 1);            
+            if (!(extension == "jpeg" || extension == "jpg" || extension == "png")) {
+                $(".avatar-label").text("You can just choose JPG , JPEG , PNG files.");
+                $(".avatar-upload-button").prop('disabled', true);
+            }
+            else {
+                $(".avatar-label").text(filenameselected);
+                $(".avatar-upload-button").prop('disabled', false);
+            }
+        })
+
+        $(".site-icon-file-input").change(function() {
+            let extension = this.value.substr(this.value.lastIndexOf('.') + 1);
+            let filenameselected = this.value.substr(this.value.lastIndexOf('\\') + 1);            
+            if (!(extension == "jpeg" || extension == "jpg" || extension == "png" || extension == "svg" || extension == "ico")) {
+                $(".site-icon-label").text("You can just choose image files.");
+                $(".site-icon-upload-button").prop('disabled', true);
+            }
+            else {
+                $(".site-icon-label").text(filenameselected);
+                $(".site-icon-upload-button").prop('disabled', false);
+            }
+        })
+    </script>
+
+    <% include partials/footer_admin %>
