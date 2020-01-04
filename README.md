@@ -34,4 +34,4 @@ Then everything is simple. Just click a field that you want to update  , edit an
 * [SB Admin Panel](https://github.com/BlackrockDigital/startbootstrap-sb-admin) - Layout for Admin Panel
 
 ## License
-This project is licensed under the MIT License - see the [LICENSE.md](LICENSE) file for details
+This project is licensed under the MIT License - see the [LICENSE](LICENSE) file for details
