@@ -10,7 +10,7 @@ A Personal Website that has experience, skill, portfolio, blog, contact fields. 
 * [MongoDB](https://www.mongodb.com/download-center)
 
 ### Database Config
-You should import database that i exported. You can find it above which folder has name that **Database_Exported**. If you have no idea about import MongoDB take a look [here](https://stackoverflow.com/questions/11255630/how-to-export-all-collections-in-mongodb)
+You should import database that i [exported](https://github.com/ahmetbcakici/DynamicPersonalWebsite/tree/master/Database_Exported). If you have no idea about import MongoDB take a look [here](https://stackoverflow.com/questions/11255630/how-to-export-all-collections-in-mongodb)
 
 ## Installation
 ```
@@ -22,7 +22,7 @@ npm start # To run project , check http://localhost:3000 on your browser
 
 ## Usage Admin Panel
 Please visit /admin page to access CMS. You will see a login page if you install the project successfully. Username and password are as below at first , later you can change them.
-`test`
+`test`\
 `123`
 
 Then everything is simple. Just click a field that you want to update  , edit and save changes in home page. Other sections are simple too as it seems. I just should say that you must specify education or career as category in experience and must specify design or programming as category in skill pages. The category keyword assign data will be right or left column. Also please check [funcsback.js]() file to config your mail settings which is sender to your personal mail address. Your personal mail address is editable from panel already.
@@ -34,4 +34,4 @@ Then everything is simple. Just click a field that you want to update  , edit an
 * [SB Admin Panel](https://github.com/BlackrockDigital/startbootstrap-sb-admin) - Layout for Admin Panel
 
 ## License
-This project is licensed under the MIT License - see the [LICENSE.md](LICENSE.md) file for details
+This project is licensed under the MIT License - see the [LICENSE.md](LICENSE) file for details
