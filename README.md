@@ -21,11 +21,11 @@ npm start # To run project , check http://localhost:3000 on your browser
 ```
 
 ## Usage Admin Panel
-Please visit /admin page to access CMS. You will see a login page if you install the project successfully. Username and password are as below at first , later you can change them.
+Please visit /admin page to access CMS. You will see a login page if you install the project successfully. Username and password are as below at first , later you can change them.\
 `test`\
 `123`
 
-Then everything is simple. Just click a field that you want to update  , edit and save changes in home page. Other sections are simple too as it seems. I just should say that you must specify education or career as category in experience and must specify design or programming as category in skill pages. The category keyword assign data will be right or left column. Also please check [funcsback.js]() file to config your mail settings which is sender to your personal mail address. Your personal mail address is editable from panel already.
+Then everything is simple. Just click a field that you want to update  , edit and save changes in home page. Other sections are simple too as it seems. I just should say that you must specify education or career as category in experience and must specify design or programming as category in skill pages. The category keyword assign data will be right or left column. Also please check [funcsback.js](https://github.com/ahmetbcakici/DynamicPersonalWebsite/blob/master/assets/js/funcsback.js) file to config your mail settings which is sender to your personal mail address. Your personal mail address is editable from panel already.
 
 
 ## Built With
