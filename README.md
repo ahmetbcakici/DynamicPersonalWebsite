@@ -1,6 +1,10 @@
 # Dynamic Personal Website
 
 A Personal Website that has experience, skill, portfolio, blog, contact fields. Anybody can have him/her own personal website with this project. Because every content, field is completely dynamic and editable via admin panel.
+<div align="center">
+<a href="https://user-images.githubusercontent.com/36089310/71773333-83a7b100-2f6c-11ea-994c-325d63d5a2ed.gif" target="_blank"><strong>Frontend GIF</strong></a>&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;
+<a href="https://user-images.githubusercontent.com/36089310/71773401-72ab6f80-2f6d-11ea-9aef-da9feaa4b6b9.gif" target="_blank"><strong>Backend GIF</strong></a>
+</div>
 
 ## Get Started
 
