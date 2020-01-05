@@ -19,6 +19,11 @@
         <div class="card card-login mx-auto mt-5">
             <div class="card-header">Login Form</div>
             <div class="card-body">
+                <% if(state == -1) { %>
+                    <div class="card card-login mx-auto text-center mb-4">                
+                            <div class="alert alert-danger m-0">Incorrect Username or Password!</div>                
+                    </div>
+                <% } %>
                 <form method="POST" action="/operation/login">
                     <div class="form-group">
                         <div class="form-label-group">

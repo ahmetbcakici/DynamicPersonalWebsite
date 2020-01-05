@@ -1,4 +1,14 @@
 <% include partials/header_admin %>
+
+<% if(state != 0) { %>
+<div class="card card-login mx-auto text-center">
+    <% if(state == -1){ %>
+        <div class="alert alert-danger m-0">Incorrect Password!</div>
+    <% }else if(state == 1){ %>
+        <div class="alert alert-success m-0">Successful</div>
+    <% } %>
+</div>
+<% } %>
 <div class="card card-login mx-auto mt-3 ">
     <div class="card-header">Change Password</div>
     <div class="card-body">
@@ -18,11 +28,25 @@
             <div class="form-group">
                 <div class="form-label-group">
                     <input type="password" name="new_pass" id="inputNewPassword" class="form-control" placeholder="New Password" required>
-                    <label for="inputNewPassword">New Password</label>
+                    <label for="inputNewPassword">New Password<a href="#" class="show-password float-right" style="font-size:1rem;"><i class="fas fa-eye"></i></a></label>
                 </div>
             </div>
             <input type="submit" class="btn btn-primary btn-block" value="Change">
         </form>
     </div>
 </div>
+
+<script>
+    var oddone = 0;
+    $(".show-password").click(function(){
+       if(oddone % 2 == 0){
+        $(".fa-eye").attr("class","fas fa-eye-slash");
+        $("input[name='new_pass']").attr("type","text");
+       }else{
+        $(".fa-eye-slash").attr("class","fas fa-eye");
+        $("input[name='new_pass']").attr("type","password");
+       }
+       oddone++;
+    })
+</script>
 <% include partials/footer_admin %>

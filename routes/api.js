@@ -10,7 +10,6 @@ const Skill = require("../models/Skill");
 const Post = require("../models/Post");
 const Homepage = require("../models/Homepage");
 const Portfolio = require("../models/Portfolio");
-const Admin = require("../models/Admin");
 
 const Funcs = require("../assets/js/funcsback");
 const Functions = new Funcs();
@@ -253,19 +252,5 @@ router.post("/portfolio", upload.single('portfolio-image'),(req, res,next) => {
         }
     }
 })
-
-router.post("/admin", (req, res) => {
-    const newrecord = new Admin({
-            username: "test",
-            password: "123"
-        })
-        // newrecord.save((err) => {
-        //     if (err) throw err;
-        //     console.log("admin post req")
-        //         // res.redirect("/admin/portfolio");
-        // })
-})
-
-
 
 module.exports = router;
