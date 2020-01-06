@@ -1,6 +1,6 @@
 # Dynamic Personal Website
 
-A Personal Website that has experience, skill, portfolio, blog, contact fields. Anybody can have him/her own personal website with this project. Because every content, field is completely dynamic and editable via admin panel.
+A Personal Website that has experience, skill, portfolio, blog, contact fields. Anybody can have him/her own personal website without any code because every content, field is completely dynamic and editable via admin panel.
 <div align="center">
 <a href="#gif-belongs-to-project">See GIFS belongs to project</a>
 </div>
