@@ -1,5 +1,5 @@
 {
-    "name": "Dynamic Personal Website",
+    "name": "DynamicPersonalWebsite",
     "version": "1.0.0",
     "description": "This project is personel website which has CMS.",
     "main": "server.js",
