@@ -1,16 +1,22 @@
+<script async defer src="https://buttons.github.io/buttons.js"></script>
+<footer class="text-center bg-dark text-white mt-5 p-2">
+    <p>This is the demo version for the project. You can also access to admin panel to manage content with send request to /admin</p>
+    <p>This is also open-source project! To check and support: <a class="github-button" href="https://github.com/ahmetbcakici/dynamicpersonalwebsite" data-icon="octicon-star" aria-label="Star ahmetbcakici/dynamicpersonalwebsite on GitHub">Star on GitHub</a></p>
+</footer>
 </div>
 <div class="mt-5"></div>
 <script src="https://code.jquery.com/jquery-3.2.1.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
 <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
 <script>
-        $.get("/api/homepage", function(docs, status) {
-            docs.map(data => {
-                $(".name").text(data.name);
-                $(document).attr("title", `${data.site_title}`);
-                $(".site-icon").attr("href", `/assets/images/${data.site_icon}`);
-            })
+    $.get("/api/homepage", function(docs, status) {
+        docs.map(data => {
+            $(".name").text(data.name);
+            $(document).attr("title", `${data.site_title}`);
+            $(".site-icon").attr("href", `/assets/images/${data.site_icon}`);
         })
+    })
 </script>
 </body>
+
 </html>
