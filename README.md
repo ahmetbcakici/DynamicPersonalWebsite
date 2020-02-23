@@ -30,6 +30,9 @@ Please visit /admin page to access CMS. You will see a login page if you install
 
 Then everything is simple. Just click a field that you want to update  , edit and save changes in home page. Other sections are simple too as it seems. I just should say that you must specify education or career as category in experience and must specify design or programming as category in skill pages. The category keyword assign data will be right or left column. Also please check [funcsback.js](https://github.com/ahmetbcakici/DynamicPersonalWebsite/blob/master/assets/js/funcsback.js) file to config your mail settings which is sender to your personal mail address. Your personal mail address is editable from panel already.
 
+### To Remove Footer Area (which is specifying DEMO version)
+You should remove first 5 lines from the file: https://github.com/ahmetbcakici/DynamicPersonalWebsite/blob/master/views/partials/footer.ejs
+
 
 ## Built With
 * [Express](https://github.com/expressjs/express) - Node framework used
@@ -37,7 +40,7 @@ Then everything is simple. Just click a field that you want to update  , edit an
 * [SB Admin Panel](https://github.com/BlackrockDigital/startbootstrap-sb-admin) - Layout for Admin Panel
 
 ## License
-This project is licensed under the MIT License - see the [LICENSE](LICENSE) file for details
+This project is licensed under the CC License - see the [LICENSE](LICENSE) file for details
 
 ## GIF belongs to project
 ![Front-1convertio](https://user-images.githubusercontent.com/36089310/71773622-f7e45380-2f70-11ea-85f1-3a16313ff36d.gif)
